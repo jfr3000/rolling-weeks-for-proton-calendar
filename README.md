@@ -2,6 +2,8 @@
 
 Browser extension that shows the next few weeks in the Proton Calendar web app, instead of the fixed calendar month, like you can on Google Calendar.
 
+Unofficial, not affiliated with Proton AG.
+
 ## Install
 
 Store links coming once they're approved.
