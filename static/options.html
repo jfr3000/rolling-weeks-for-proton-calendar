@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rolling Weeks for Proton Calendar</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 14px/1.5 system-ui, sans-serif; margin: 16px; min-width: 280px; max-width: 420px; }
+    label { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 12px 0; }
+    select, button { font: inherit; }
+    button { width: 100%; padding: 6px 12px; margin-top: 4px; cursor: pointer; }
+    #status { min-height: 1.5em; opacity: .7; }
+    small { opacity: .7; }
+  </style>
+</head>
+<body>
+  <label>Number of weeks
+    <select id="weeks">
+      <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+    </select>
+  </label>
+  <label>Start
+    <select id="startWeeksBack">
+      <option value="0">This week</option>
+      <option value="1">Last week</option>
+    </select>
+  </label>
+  <label>Apply automatically on load
+    <input type="checkbox" id="autoApply">
+  </label>
+  <button type="button" id="apply">Apply now</button>
+  <div id="status" role="status"></div>
+  <small>Unofficial. Not affiliated with Proton AG. Makes no network requests.</small>
+  <script src="options.js"></script>
+</body>
+</html>

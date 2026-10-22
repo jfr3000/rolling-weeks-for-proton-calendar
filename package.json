@@ -1,0 +1,17 @@
+{
+  "name": "rolling-weeks-for-proton-calendar",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Rolling multi-week view for Proton Calendar (unofficial).",
+  "scripts": {
+    "icons": "node scripts/make-icons.mjs",
+    "test": "node --test \"test/*.test.js\"",
+    "build": "node scripts/build.mjs",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
