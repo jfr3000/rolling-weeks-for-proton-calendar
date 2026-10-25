@@ -6,12 +6,8 @@ Unofficial, not affiliated with Proton AG.
 
 ## Install
 
-Store links coming once they're approved.
-
-Until then, build it yourself (see [Development](#development)) and load it:
-
-- **Chrome, Brave** `chrome://extensions` → Developer mode → Load unpacked → `dist/chrome`
-- **Firefox:** `about:debugging#/runtime/this-firefox` → Load Temporary Add-on → `dist/firefox/manifest.json`. Annoyingly, Firefox removes temporary add-ons on restart, so for a permanent install you'll want the store version.
+- **Firefox:** [Firefox Add-ons](https://addons.mozilla.org/addon/rolling-weeks-proton-calendar/)
+- **Chrome, Brave:** Chrome Web Store link coming once it's approved. Until then, build it yourself (see [Development](#development)), open `chrome://extensions` → Developer mode → Load unpacked → `dist/chrome`
 
 ## Usage
 
