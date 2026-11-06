@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildPath, getPrefix, isRewritable, parsePath } from '../src/route.js';
+import { buildPath, checkApplied, getPrefix, isRewritable, parsePath } from '../src/route.js';
 
 test('parsePath: the URL confirmed to work in the app', () => {
   assert.deepEqual(parsePath('/u/3/month/2026/10/22/2'), {
@@ -40,4 +40,25 @@ test('buildPath', () => {
 test('getPrefix', () => {
   assert.equal(getPrefix('/u/12/settings/foo'), '/u/12');
   assert.equal(getPrefix('/month'), '');
+});
+
+test('checkApplied: ok when the app kept the range', () => {
+  const pending = { path: '/u/3/month/2026/11/2/2', view: 'month', range: 2 };
+  assert.equal(checkApplied(pending, '/u/3/month/2026/11/2/2', true), 'ok');
+});
+
+test('checkApplied: failed when the app dropped or changed the range', () => {
+  const pending = { path: '/u/3/month/2026/11/2/2', view: 'month', range: 2 };
+  assert.equal(checkApplied(pending, '/u/3/month/2026/11/2', true), 'failed');
+  assert.equal(checkApplied(pending, '/u/3/week/2026/11/2', true), 'failed');
+});
+
+test('checkApplied: unknown (no toast) when the app never rendered', () => {
+  const pending = { path: '/u/3/month/2026/11/2/2', view: 'month', range: 2 };
+  assert.equal(checkApplied(pending, '/u/3/month/2026/11/2/2', false), 'unknown');
+});
+
+test('checkApplied: single-week view has no range', () => {
+  const pending = { path: '/u/3/week/2026/11/2', view: 'week', range: null };
+  assert.equal(checkApplied(pending, '/u/3/week/2026/11/2', true), 'ok');
 });

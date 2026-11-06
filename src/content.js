@@ -7,7 +7,7 @@ import {
   TOAST_TEXT,
 } from './config.js';
 import { computeTarget, normalizeSettings } from './dates.js';
-import { buildPath, getPrefix, isRewritable, parsePath } from './route.js';
+import { buildPath, checkApplied, getPrefix, isRewritable, parsePath } from './route.js';
 import { showToast } from './toast.js';
 
 const api = globalThis.browser ?? globalThis.chrome;
@@ -62,11 +62,12 @@ async function verifyPending(raw) {
   let pending;
   try { pending = JSON.parse(raw); } catch { return; }
   const ready = await waitFor(() => document.querySelector(SELECTORS.appReady), TIMEOUTS.appReadyMs);
-  const now = parsePath(location.pathname);
-  const ok = ready && now && now.view === pending.view && (now.range ?? null) === pending.range;
-  if (!ok) {
-    log('rolling view not applied', { expected: pending, actualPath: location.pathname, appReady: !!ready });
+  const result = checkApplied(pending, location.pathname, !!ready);
+  if (result === 'failed') {
+    log('rolling view not applied', { expected: pending, actualPath: location.pathname });
     showToast(TOAST_TEXT);
+  } else if (result === 'unknown') {
+    log('calendar did not finish rendering in time; not checking the view', { selector: SELECTORS.appReady });
   }
 }
 

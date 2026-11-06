@@ -31,3 +31,14 @@ export function buildPath(prefix, { view, date, range }) {
   if (range) segments.push(range);
   return `${prefix}/${segments.join('/')}`;
 }
+
+/**
+ * Result of a rewrite, checked once the app has had time to render.
+ * 'unknown' when the app never rendered (slow load, sign-in page): no reason to alarm the user.
+ */
+export function checkApplied(pending, pathname, appReady) {
+  if (!appReady) return 'unknown';
+  const now = parsePath(pathname);
+  const ok = now && now.view === pending.view && (now.range ?? null) === pending.range;
+  return ok ? 'ok' : 'failed';
+}

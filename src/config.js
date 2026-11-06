@@ -2,8 +2,9 @@
 // If Proton changes something, this is the only file that should need editing.
 
 export const SELECTORS = {
-  // Present once the calendar UI has rendered (mini calendar "today" button in the sidebar).
-  appReady: '[data-testid="minicalendar:today"]',
+  // Present once the calendar UI has rendered: the sidebar mini calendar's month arrows.
+  // (Its "today" button is off by default and not shown in the sidebar.)
+  appReady: '[data-testid="minicalendar:next-month"], [data-testid="minicalendar:previous-month"]',
 };
 
 export const ROUTE = {
