@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Rolling Weeks for Proton Calendar",
+  "name": "Rolling Weeks Proton Calendar",
   "short_name": "Rolling Weeks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shows a rolling multi-week view in Proton Calendar. Unofficial; not affiliated with Proton AG.",
   "icons": {
     "16": "icons/16.png",
